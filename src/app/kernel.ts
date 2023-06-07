@@ -16,6 +16,7 @@ export default [
   express.urlencoded({ extended: false }),
   helmet,
   HeaderMiddleware,
-  LogerMiddleware,
+  // LogerMiddleware,
   fileUpload(),
+  express.static("public"),
 ];

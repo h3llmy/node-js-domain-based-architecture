@@ -1,9 +1,9 @@
-import mongoose, { Model, Schema } from "mongoose";
+import { Model, Schema, model } from "mongoose";
 import encryptPasswordPlugin from "../utils/mongoosePlugin/encryptPassword";
 import IUser from "./UserInterface";
 import { isEmail } from "../utils/validation";
 
-const userSchema: Schema = new mongoose.Schema(
+const userSchema: Schema = new Schema(
   {
     username: {
       type: String,
@@ -49,6 +49,6 @@ const userSchema: Schema = new mongoose.Schema(
 
 userSchema.plugin(encryptPasswordPlugin);
 
-const User: Model<IUser> = mongoose.model<IUser>("user", userSchema);
+const User: Model<IUser> = model<IUser>("user", userSchema);
 
 export default User;

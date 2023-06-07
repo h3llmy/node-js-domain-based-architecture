@@ -2,11 +2,11 @@
   "apps": [
     {
       "name": "app",
-      "script": "src/server.ts",
+      "script": "src/Server.ts",
       "instances": 1,
       "interpreter": "./node_modules/.bin/ts-node",
       "autorestart": true,
-      "watch": true,
+      "watch": false,
       "time": true,
       "env": {
         "NODE_ENV": "production"
