@@ -4,8 +4,8 @@ import Validator from "./validation";
 import { Router } from "express";
 
 export default class Controller extends AuthMiddleware {
-  validator: Validator;
-  router: Router;
+  private validator: Validator;
+  public router: Router;
 
   constructor() {
     super();

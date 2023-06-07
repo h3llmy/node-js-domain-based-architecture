@@ -23,11 +23,9 @@ class App extends AuthMiddleware {
 
   public listen() {
     this.connectToTheDatabase();
-    this.app.listen(process.env.PORT, () => {
-      console.log(
-        "\x1b[34m%s\x1b[0m",
-        `App listening on the port ${process.env.PORT}`
-      );
+    const { PORT } = process.env;
+    this.app.listen(PORT, () => {
+      console.log("\x1b[34m%s\x1b[0m", `App listening on the port ${PORT}`);
     });
   }
 
