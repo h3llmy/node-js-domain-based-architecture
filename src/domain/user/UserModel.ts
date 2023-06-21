@@ -1,7 +1,7 @@
 import { Model, Schema, model } from "mongoose";
-import encryptPasswordPlugin from "../utils/mongoosePlugin/encryptPassword";
+import encryptPasswordPlugin from "../../utils/mongoosePlugin/encryptPassword";
 import IUser from "./UserInterface";
-import { isEmail } from "../utils/validation";
+import { isEmail } from "../../utils/validation";
 
 const userSchema: Schema = new Schema(
   {

@@ -1,4 +1,4 @@
-import IRouter from "../interfaces/RouterInterface";
+import IRouter from "../../interfaces/RouterInterface";
 import PostsController from "./PostsController";
 
 class PostsRoute extends PostsController implements IRouter {
@@ -15,7 +15,7 @@ class PostsRoute extends PostsController implements IRouter {
     this.router.get(`${this.path}/:post_id`, this.detail);
     this.router.put(
       `${this.path}/:post_id`,
-      this.checkRole("user"),
+      this.checkRole(["user", "admin"]),
       this.update
     );
     this.router.delete(

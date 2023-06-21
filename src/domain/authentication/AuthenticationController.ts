@@ -1,10 +1,10 @@
-import HttpError from "../utils/HttpError";
+import HttpError from "../../utils/HttpError";
 import User from "../user/UserModel";
 import { Request, Response } from "express";
-import { generateRefreshToken, generateToken } from "../utils/jsonwebtoken";
-import Controller from "../utils/Controller";
+import { generateRefreshToken, generateToken } from "../../utils/jsonwebtoken";
+import Controller from "../../utils/Controller";
 
-class AuthenticationController extends Controller {
+export default class AuthenticationController extends Controller {
   protected register = async (req: Request, res: Response) => {
     const request = this.validate(req.body, {
       username: { type: "string", required: true },
@@ -45,5 +45,3 @@ class AuthenticationController extends Controller {
     res.send(post);
   };
 }
-
-export default AuthenticationController;

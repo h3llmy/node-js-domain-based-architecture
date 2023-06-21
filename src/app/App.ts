@@ -39,7 +39,7 @@ class App extends AuthMiddleware {
   }
 
   private initializeErrorHandling() {
-    this.app.use(new ErrorMiddleware().handleError);
+    this.app.use(ErrorMiddleware);
   }
 
   private initializeControllers(controllers: Controller[]) {
@@ -66,9 +66,12 @@ class App extends AuthMiddleware {
       );
     } catch (error) {
       console.error("Failed to connect to MongoDB:", error);
+      let timer: number = 5000;
+      console.error("reconnect to MongoDB");
       setTimeout(() => {
         this.connectToTheDatabase();
-      }, 5000);
+        timer += 5000;
+      }, timer);
     }
   }
 }

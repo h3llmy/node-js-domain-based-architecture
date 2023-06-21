@@ -1,10 +1,10 @@
 import Post from "./PostModel";
-import HttpError from "../utils/HttpError";
+import HttpError from "../../utils/HttpError";
 import { Request, Response } from "express";
-import RequestWithUser from "interfaces/RequestWithUser";
-import Controller from "../utils/Controller";
+import RequestWithUser from "interfaces/RequestWithUserInterface";
+import Controller from "../../utils/Controller";
 
-class PostsController extends Controller {
+export default class PostsController extends Controller {
   protected create = async (req: RequestWithUser, res: Response) => {
     const request = this.validate(req.body, {
       name: { type: "string", required: true },
@@ -51,5 +51,3 @@ class PostsController extends Controller {
     res.json(postFind);
   };
 }
-
-export default PostsController;
