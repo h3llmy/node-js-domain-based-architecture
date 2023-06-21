@@ -1,5 +1,5 @@
-import ValidationSchema from "../interfaces/ValidationSchema";
-import ValidationError from "../interfaces/ValidationError";
+import ValidationSchema from "../interfaces/ValidationSchemaInterface";
+import ValidationError from "../interfaces/ValidationErrorInterface";
 import HttpError from "./HttpError";
 import mongoose from "mongoose";
 

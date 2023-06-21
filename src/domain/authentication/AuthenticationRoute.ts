@@ -1,4 +1,4 @@
-import IRouter from "../interfaces/RouterInterface";
+import IRouter from "../../interfaces/RouterInterface";
 import AuthenticationController from "./AuthenticationController";
 
 class AuthenticationRoute extends AuthenticationController implements IRouter {

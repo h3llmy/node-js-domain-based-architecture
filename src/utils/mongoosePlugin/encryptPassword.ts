@@ -11,6 +11,22 @@ const encryptPasswordPlugin = (schema: Schema<Document>, option: string) => {
 
     const targetProperty = this[option] ? option : "password";
 
+    schema.pre(
+      [
+        "find",
+        "findOne",
+        "findOneAndUpdate",
+        "countDocuments",
+        "findOneAndDelete",
+        "findOneAndRemove",
+        "findOneAndReplace",
+      ],
+      function (next) {
+        this.select(`-${targetProperty}`);
+        next();
+      }
+    );
+
     bcrypt.genSalt(saltRounds, (err: Error, salt: string) => {
       if (err) {
         return next(err);

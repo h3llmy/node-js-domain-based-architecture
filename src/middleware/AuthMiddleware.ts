@@ -1,8 +1,8 @@
 import { NextFunction, Response } from "express";
 import { Model } from "mongoose";
-import IUser from "../user/UserInterface";
-import User from "../user/UserModel";
-import RequestWithUser from "interfaces/RequestWithUser";
+import IUser from "../domain/user/UserInterface";
+import User from "../domain/user/UserModel";
+import RequestWithUser from "interfaces/RequestWithUserInterface";
 import { decodeToken } from "../utils/jsonwebtoken";
 import HttpError from "../utils/HttpError";
 
@@ -29,13 +29,19 @@ export default class AuthMiddleware {
       if (!decodedToken) {
         throw new HttpError("Unauthorized", 401);
       }
+
       const checkUser = await this.user
         .findById(decodedToken._id)
+        .select("_id status")
         .orFail(new HttpError("Unauthorized", 401));
+
       req.user = {
         _id: checkUser._id,
         status: checkUser.status,
       };
+      if (checkUser.isActive == false) {
+        throw new HttpError("Unauthorized", 401);
+      }
     } else {
       throw new HttpError("Unauthorized", 401);
     }

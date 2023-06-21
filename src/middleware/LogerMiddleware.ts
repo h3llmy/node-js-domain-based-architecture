@@ -1,6 +1,13 @@
 import * as morgan from "morgan";
 import * as fs from "fs";
 
-const accessLogStream = fs.createWriteStream("app.log", { flags: "a" });
+let accessLogStream: fs.WriteStream | undefined;
 
-export default morgan("combined", { stream: accessLogStream });
+if (process.env.NODE_ENV) {
+  accessLogStream = fs.createWriteStream("app.log", { flags: "a" });
+}
+
+export default morgan(
+  process.env.NODE_ENV === "production" ? "combined" : "dev",
+  { stream: accessLogStream }
+);
